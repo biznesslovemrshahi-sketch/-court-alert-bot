@@ -1,0 +1,19 @@
+name: Court Notice Checker
+on:
+  schedule:
+    - cron: '*/15 * * * *' # हरेक 15 मिनेट
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests beautifulsoup4
+      - run: python bot.py
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "update check"
