@@ -1,7 +1,9 @@
-import requests, hashlib, json
+import requests, hashlib, json, os
 from bs4 import BeautifulSoup
 
-BOT_TOKEN = "8953619881:AAE88e-Vec7s8irvSRXSfB98ptp2zRXA1SA"
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+if not BOT_TOKEN:
+    raise SystemExit("TELEGRAM_BOT_TOKEN secret सेट गरिएको छैन")
 CHAT_ID = "6887445420"
 
 COURTS = {
